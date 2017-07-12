@@ -30,7 +30,7 @@ NSString * const kMagicalRecordImportRelationshipLinkedByKey        = @"relatedB
 NSString * const kMagicalRecordImportRelationshipTypeKey            = @"type";  //this needs to be revisited
 
 NSString * const kHKMagicalRecordImportRelationshipDoNotUpdate        = @"doNotUpdate";  // HK use this flag at relashionsheep destination, do not update destion object
-
+NSString * const kHKMagicalRecordImportRelationshipBySupperData        = @"relatedByKey";  // HK use this flag get value outisde
 NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"useDefaultValueWhenNotPresent";
 
 
@@ -122,6 +122,40 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
     return objectForRelationship;
 }
 
+- (NSManagedObject *) MR_FD_findObjectForRelationship:(NSRelationshipDescription *)relationshipInfo withData:(id)singleRelatedObjectData
+{
+    NSEntityDescription *destinationEntity = [relationshipInfo destinationEntity];
+    NSManagedObject *objectForRelationship = nil;
+    
+    id relatedValue;
+    
+    // if its a primitive class, than handle singleRelatedObjectData as the key for relationship
+    if ([singleRelatedObjectData isKindOfClass:[NSString class]] ||
+        [singleRelatedObjectData isKindOfClass:[NSNumber class]])
+    {
+        relatedValue = singleRelatedObjectData;
+    }
+    else if ([singleRelatedObjectData isKindOfClass:[NSDictionary class]])
+    {
+        relatedValue = [singleRelatedObjectData objectForKey:kHKMagicalRecordImportRelationshipBySupperData];
+    }
+    else
+    {
+        relatedValue = singleRelatedObjectData;
+    }
+    
+    if (relatedValue)
+    {
+        NSManagedObjectContext *context = [self managedObjectContext];
+        Class managedObjectClass = NSClassFromString([destinationEntity managedObjectClassName]);
+        NSString *primaryKey = [relationshipInfo MR_primaryKey];
+        objectForRelationship = [managedObjectClass MR_findFirstByAttribute:primaryKey
+                                                                  withValue:relatedValue
+                                                                  inContext:context];
+    }
+    
+    return objectForRelationship;
+}
 
 
 - (void) MR_addObject:(NSManagedObject *)relatedObject forRelationship:(NSRelationshipDescription *)relationshipInfo

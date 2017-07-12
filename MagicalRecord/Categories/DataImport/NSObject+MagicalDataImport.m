@@ -67,4 +67,5 @@ NSUInteger const kMagicalRecordImportMaximumAttributeFailoverDepth = 10;
     return lookupKey ? [self valueForKeyPath:lookupKey] : nil;
 }
 
+
 @end
