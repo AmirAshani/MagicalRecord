@@ -372,7 +372,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
                                      
                                      if(doNotUpdateDestination){
                                          
-                                         relatedObject=[weakself MR_findObjectForRelationship:relationshipInfo withData:objectData];   //find relatedobject form superData
+                                         relatedObject=[weakself MR_FD_findObjectForRelationship:relationshipInfo withData:objectData];   //find relatedobject form superData
                                          
                                      }else{
                                          relatedObject= [weakself MR_findObjectForRelationship:relationshipInfo withData:localObjectData];
