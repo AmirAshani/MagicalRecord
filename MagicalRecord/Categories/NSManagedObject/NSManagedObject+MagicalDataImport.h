@@ -37,4 +37,10 @@ OBJC_EXPORT NSString * __MR_nonnull const kMagicalRecordImportRelationshipTypeKe
 + (MR_nonnull MR_NSArrayOfNSManagedObjects) MR_importFromArray:(MR_nonnull MR_GENERIC(NSArray, NSDictionary *) *)listOfObjectData;
 + (MR_nonnull MR_NSArrayOfNSManagedObjects) MR_importFromArray:(MR_nonnull MR_GENERIC(NSArray, NSDictionary *) *)listOfObjectData inContext:(MR_nonnull NSManagedObjectContext *)context;
 
++ (MR_nonnull instancetype) MR_FD_importFromObject:(MR_nonnull id)objectData;
++ (MR_nonnull instancetype) MR_FD_importFromObject:(MR_nonnull id)objectData inContext:( MR_nonnull NSManagedObjectContext *)context;
+
++ (MR_nonnull MR_NSArrayOfNSManagedObjects) MR_FD_importFromArray:(MR_nonnull MR_GENERIC(NSArray, NSDictionary *) *)listOfObjectData;
++ (MR_nonnull MR_NSArrayOfNSManagedObjects) MR_FD_importFromArray:(MR_nonnull MR_GENERIC(NSArray, NSDictionary *) *)listOfObjectData inContext:(MR_nonnull NSManagedObjectContext *)context;
+
 @end
