@@ -122,6 +122,8 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
     return objectForRelationship;
 }
 
+
+
 - (void) MR_addObject:(NSManagedObject *)relatedObject forRelationship:(NSRelationshipDescription *)relationshipInfo
 {
     NSAssert2(relatedObject != nil, @"Cannot add nil to %@ for attribute %@", NSStringFromClass([self class]), [relationshipInfo name]);
@@ -335,8 +337,8 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
                                      
                                      
                                      if(doNotUpdateDestination){
-                                         NSString * relatedValue=[objectData MR_relatedValueForRelationship:relationshipInfo]; //find relatedobject form superData
-                                         relatedObject=[weakself MR_findObjectForRelationship:relationshipInfo withData:relatedValue];
+                                         
+                                         relatedObject=[weakself MR_findObjectForRelationship:relationshipInfo withData:objectData];   //find relatedobject form superData
                                          
                                      }else{
                                          relatedObject= [weakself MR_findObjectForRelationship:relationshipInfo withData:localObjectData];
