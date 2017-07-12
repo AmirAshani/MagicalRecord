@@ -137,6 +137,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
     }
     else if ([singleRelatedObjectData isKindOfClass:[NSDictionary class]])
     {
+        //do proper solution
         relatedValue = [singleRelatedObjectData objectForKey:kHKMagicalRecordImportRelationshipBySupperData];
     }
     else
