@@ -7,7 +7,7 @@
 //
 
 #import <MagicalRecord/MagicalRecord+Options.h>
-
+#define TestIsWorking
 #if MR_LOGGING_DISABLED
 
 #define MRLogError(frmt, ...) ((void)0)
