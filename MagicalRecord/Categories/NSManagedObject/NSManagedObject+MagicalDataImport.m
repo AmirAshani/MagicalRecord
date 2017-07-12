@@ -327,7 +327,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
 {
     __weak typeof(self) weakself = self;
     
-    return [self MR_FD_performDataImportFromObject:objectData
+    return [self MR_FD_performDataImportFromObject:objectData doNotUpdate:doNotUpdate 
                                  relationshipBlock:^(NSRelationshipDescription *relationshipInfo, id localObjectData) {
                                      
                                      NSManagedObject *relatedObject;
