@@ -396,7 +396,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
                                      
                                      if ([localObjectData isKindOfClass:[NSDictionary class]])
                                      {
-                                         bool doNotUpdateDestination=[[relationshipInfo.userInfo objectForKey:kHKMagicalRecordImportRelationshipDoNotUpdate] boolValue];
+                                         bool doNotUpdateDestination=[[relationshipInfo.userInfo objectForKey:kHKMagicalRecordImportRelationshipDoNotUpdate] boolValue] || doNotUpdate;
                                          [relatedObject MR_FD_importValuesForKeysWithObject:localObjectData doNotUpdate:doNotUpdateDestination];
                                          
                                      }
