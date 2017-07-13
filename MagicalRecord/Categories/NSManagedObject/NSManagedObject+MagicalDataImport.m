@@ -30,7 +30,7 @@ NSString * const kMagicalRecordImportRelationshipLinkedByKey        = @"relatedB
 NSString * const kMagicalRecordImportRelationshipTypeKey            = @"type";  //this needs to be revisited
 
 NSString * const kHKMagicalRecordImportRelationshipDoNotUpdate        = @"doNotUpdate";  // HK use this flag at relashionsheep destination, do not update destion object
-NSString * const kHKMagicalRecordImportRelationshipBySupperData        = @"relatedByKey";  // HK use this flag get value outisde
+NSString * const kHKMagicalRecordImportRelationshipByEnclosingData        = @"relatedByKey";  // HK use this flag get value outisde object (enclosing json)
 NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"useDefaultValueWhenNotPresent";
 
 
@@ -138,7 +138,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
     else if ([singleRelatedObjectData isKindOfClass:[NSDictionary class]])
     {
         //do proper solution
-        relatedValue = [singleRelatedObjectData objectForKey:kHKMagicalRecordImportRelationshipBySupperData];
+        relatedValue = [singleRelatedObjectData objectForKey:kHKMagicalRecordImportRelationshipByEnclosingData];
     }
     else
     {
@@ -368,20 +368,21 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
                                  relationshipBlock:^(NSRelationshipDescription *relationshipInfo, id localObjectData) {
                                      
                                      NSManagedObject *relatedObject;
-                                     bool doNotUpdateDestination=[[relationshipInfo.userInfo objectForKey:kHKMagicalRecordImportRelationshipDoNotUpdate] boolValue];
+                                     NSString * relateByKey=[relationshipInfo.userInfo objectForKey:kHKMagicalRecordImportRelationshipByEnclosingData];
                                      
                                      
-                                     if(doNotUpdateDestination){
+                                     
+                                     if(relateByKey.length!=0){
                                          
-                                         relatedObject=[weakself MR_FD_findObjectForRelationship:relationshipInfo withData:objectData];   //find relatedobject form superData
+                                         relatedObject=[weakself MR_FD_findObjectForRelationship:relationshipInfo withData:objectData];   //find related object pk  form enclosing data
                                          
                                      }else{
                                          relatedObject= [weakself MR_findObjectForRelationship:relationshipInfo withData:localObjectData];
                                      }
                                      
                                      
-                                     if(relatedObject ==nil && doNotUpdateDestination){
-                                         MRLogWarn(@"Warning! DoNotUpdateDestination flag is set but there is  no Destination, check mappedValue");
+                                     if(relatedObject ==nil && relateByKey.length!=0){
+                                         MRLogWarn(@"Warning! relatedByKey flag is set but there is  no Destination, check relashionship data");
                                      }
                                      
                                      
@@ -394,6 +395,7 @@ NSString * const kMagicalRecordImportAttributeUseDefaultValueWhenNotPresent = @"
                                      
                                      if ([localObjectData isKindOfClass:[NSDictionary class]])
                                      {
+                                         bool doNotUpdateDestination=[[relationshipInfo.userInfo objectForKey:kHKMagicalRecordImportRelationshipDoNotUpdate] boolValue];
                                          [relatedObject MR_FD_importValuesForKeysWithObject:localObjectData doNotUpdate:doNotUpdateDestination];
                                          
                                      }
