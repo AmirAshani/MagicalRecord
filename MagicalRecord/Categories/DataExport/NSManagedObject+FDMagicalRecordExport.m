@@ -151,10 +151,6 @@
     
 }
 
--(NSDictionary*)exportRelashionships:(NSString*)relashipName withOptions:(id<FDMagicalRecord_ExportOptions>)options{
-    
-    
-}
 
 
 
