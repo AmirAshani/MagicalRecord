@@ -47,7 +47,7 @@
     if(options==nil){
         return attributesName;
     }
-    if(![options performSelector:@selector(skipAttributes) withObject:nil]){
+    if(![options respondsToSelector:@selector(skipAttributes)]){
         return attributesName;
     }
     
