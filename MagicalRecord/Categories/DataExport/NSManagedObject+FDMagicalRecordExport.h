@@ -23,7 +23,8 @@
 
 @interface NSManagedObject (FDMagicalRecordExport) <FDMagicalRecord_ExportOptionsDelegate>
 
--(NSDictionary*)toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options;
--(NSString*)toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options;
+-(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options;
+-(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options;
+
 
 @end

@@ -13,7 +13,7 @@
 
 @implementation NSManagedObject (FDMagicalRecordExport)
 
--(NSString *)toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options{
+-(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options{
     
     NSDictionary * dictionary=[self toDictionaryWithOption:options];
 //    NSData * jsonData=[dictionary data]
@@ -32,7 +32,7 @@
 }
 
 
--(NSDictionary *)toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
+-(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
     
     NSArray * attributesNameToExport=[self attributesNameToExport:options];
     NSDictionary * dic=[self exportAttributes:attributesNameToExport];
