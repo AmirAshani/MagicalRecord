@@ -132,7 +132,7 @@
                 optionForRelashionship=options;
             }
             
-            NSDictionary * valueDic=[value MR_toDictionaryWithOption:optionForRelashionship];
+            NSDictionary * valueDic=[relashionshipEntity MR_toDictionaryWithOption:optionForRelashionship];
             if(valueDic == nil || valueDic.allKeys.count ==0 ){
                 value=[NSNull null];
             }else{
