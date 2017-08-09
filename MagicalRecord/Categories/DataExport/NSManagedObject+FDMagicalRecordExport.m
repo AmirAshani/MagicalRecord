@@ -61,8 +61,8 @@
         return attributesName;
     }
     
-    NSSet * setAttributeName=[NSSet setWithArray:attributesName];
-    [setAttributeName intersectsSet:[options skipAttributes]];
+    NSMutableSet * setAttributeName=[NSMutableSet setWithArray:attributesName];
+    [setAttributeName minusSet:[options skipAttributes]];
     
     return [setAttributeName allObjects];
 
@@ -97,8 +97,8 @@
     }
     
     
-    NSSet * setRelashionshipName=[NSSet setWithArray:relashionshipsName];
-    [setRelashionshipName intersectsSet:[options skipRelationship]];
+    NSMutableSet * setRelashionshipName=[NSMutableSet setWithArray:relashionshipsName];
+    [setRelashionshipName minusSet:[options skipRelationship]];
     
     return [setRelashionshipName allObjects];
 }
