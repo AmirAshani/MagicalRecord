@@ -10,7 +10,7 @@
 #import <MagicalRecord/MagicalRecordXcode7CompatibilityMacros.h>
 
 @protocol   FDMagicalRecord_ExportOptions <NSObject>
-//@property  (MR_nullable,strong,nonatomic) NSString *  ID;
+@property  (MR_nullable,strong,nonatomic) NSString *  ID;
 
 @optional
 -(MR_nullable NSSet*)skipAttributes;
