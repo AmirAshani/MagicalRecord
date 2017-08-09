@@ -120,6 +120,43 @@
         
         if([description isToMany]){
             
+            id value=nil;
+            
+            NSSet * relashionshipSet=[self valueForKey:relashionshipName];
+            if(relashionshipSet.count==0){
+                value=[NSNull null];
+            }else{
+                id<FDMagicalRecord_ExportOptions> optionForRelashionship;
+                
+                id relashionshipEntity=relashionshipSet.anyObject;
+                
+                if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
+                    optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options];
+                }else{
+                    optionForRelashionship=options;
+                }
+                
+                value=[[NSMutableArray alloc] initWithCapacity:relashionshipSet.count];
+                
+                for(NSManagedObject * entry in relashionshipSet){
+                    
+                    NSDictionary * valueDic=[entry MR_toDictionaryWithOption:optionForRelashionship];
+                    if(!(valueDic == nil || valueDic.allKeys.count ==0) ){ //refactor
+                        [value addObject:valueDic];
+                    }
+                
+                }
+                
+                if([value count]==0){
+                    value=[NSNull null];
+                }
+
+            }
+            
+            [relashionshipsDictionary setObject:value forKey:key];
+            
+            
+
         }else{
             
             id<FDMagicalRecord_ExportOptions> optionForRelashionship;
