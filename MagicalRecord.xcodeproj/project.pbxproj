@@ -79,6 +79,13 @@
 		300053231F39EA9D007BBF8A /* FDMagicalExportFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 300053201F39EA9D007BBF8A /* FDMagicalExportFunctions.h */; };
 		300053241F39EA9D007BBF8A /* FDMagicalExportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053211F39EA9D007BBF8A /* FDMagicalExportFunctions.m */; };
 		300053261F39EBCB007BBF8A /* FDMagicalExportFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053211F39EA9D007BBF8A /* FDMagicalExportFunctions.m */; };
+		300053351F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */ = {isa = PBXBuildFile; fileRef = 300053331F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h */; };
+		300053361F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */ = {isa = PBXBuildFile; fileRef = 300053331F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h */; };
+		300053371F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */ = {isa = PBXBuildFile; fileRef = 300053331F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h */; };
+		300053381F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */; };
+		300053391F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */; };
+		3000533A1F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */; };
+		3000533B1F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */; };
 		581ECBF7187F660B00084FEE /* MultipleEntitiesWithNoPrimaryKey.json in Resources */ = {isa = PBXBuildFile; fileRef = 581ECBF6187F660B00084FEE /* MultipleEntitiesWithNoPrimaryKey.json */; };
 		581ECBF8187F660B00084FEE /* MultipleEntitiesWithNoPrimaryKey.json in Resources */ = {isa = PBXBuildFile; fileRef = 581ECBF6187F660B00084FEE /* MultipleEntitiesWithNoPrimaryKey.json */; };
 		581ECBF9187F663100084FEE /* ImportMultipleEntitiesWithNoPrimaryKeyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 581ECBEB187F63FF00084FEE /* ImportMultipleEntitiesWithNoPrimaryKeyTests.m */; };
@@ -653,6 +660,8 @@
 		3000531C1F39BBC0007BBF8A /* NSAttributeDescription+FDMagicalDataExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributeDescription+FDMagicalDataExport.m"; sourceTree = "<group>"; };
 		300053201F39EA9D007BBF8A /* FDMagicalExportFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDMagicalExportFunctions.h; sourceTree = "<group>"; };
 		300053211F39EA9D007BBF8A /* FDMagicalExportFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDMagicalExportFunctions.m; sourceTree = "<group>"; };
+		300053331F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRelationshipDescription+FDMagicalRecordExport.h"; sourceTree = "<group>"; };
+		300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRelationshipDescription+FDMagicalRecordExport.m"; sourceTree = "<group>"; };
 		581ECBEB187F63FF00084FEE /* ImportMultipleEntitiesWithNoPrimaryKeyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportMultipleEntitiesWithNoPrimaryKeyTests.m; sourceTree = "<group>"; };
 		581ECBF6187F660B00084FEE /* MultipleEntitiesWithNoPrimaryKey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MultipleEntitiesWithNoPrimaryKey.json; path = Fixtures/MultipleEntitiesWithNoPrimaryKey.json; sourceTree = "<group>"; };
 		9004F5211A94CBCF00A61312 /* MagicalRecord for iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MagicalRecord for iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -891,6 +900,8 @@
 				300053171F39B2D6007BBF8A /* NSManagedObject+FDMagicalRecordExport.m */,
 				3000531B1F39BBC0007BBF8A /* NSAttributeDescription+FDMagicalDataExport.h */,
 				3000531C1F39BBC0007BBF8A /* NSAttributeDescription+FDMagicalDataExport.m */,
+				300053331F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h */,
+				300053341F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m */,
 			);
 			path = DataExport;
 			sourceTree = "<group>";
@@ -1250,6 +1261,7 @@
 				905D07671A63DEF40076B54E /* NSPersistentStore+MagicalRecord.h in Headers */,
 				905D075F1A63DEF40076B54E /* NSManagedObject+MagicalRecord.h in Headers */,
 				905D076A1A63DEF40076B54E /* MagicalRecord+Actions.h in Headers */,
+				300053351F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */,
 				905D07651A63DEF40076B54E /* NSManagedObjectContext+MagicalThreading.h in Headers */,
 				90F829B71B3306DE00CE306F /* MagicalRecordXcode7CompatibilityMacros.h in Headers */,
 				905D07601A63DEF40076B54E /* NSManagedObject+MagicalRequests.h in Headers */,
@@ -1304,6 +1316,7 @@
 				905D07881A63DEF40076B54E /* MagicalRecordInternal.h in Headers */,
 				905D07761A63DEF40076B54E /* NSAttributeDescription+MagicalDataImport.h in Headers */,
 				905D07811A63DEF40076B54E /* NSManagedObjectContext+MagicalObserving.h in Headers */,
+				300053361F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */,
 				905D077D1A63DEF40076B54E /* NSManagedObject+MagicalFinders.h in Headers */,
 				905D07851A63DEF40076B54E /* NSManagedObjectModel+MagicalRecord.h in Headers */,
 				905D077C1A63DEF40076B54E /* NSManagedObject+MagicalDataImport.h in Headers */,
@@ -1350,6 +1363,7 @@
 				1352E60F1B176AF700182E53 /* MagicalRecordLogging.h in Headers */,
 				1352E6101B176AF700182E53 /* MagicalRecordShorthandMethodAliases.h in Headers */,
 				90F829B91B3306DE00CE306F /* MagicalRecordXcode7CompatibilityMacros.h in Headers */,
+				300053371F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1845,6 +1859,7 @@
 			files = (
 				905D079F1A63DF120076B54E /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
 				905D07AA1A63DF120076B54E /* MagicalRecord+iCloud.m in Sources */,
+				300053381F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */,
 				905D07951A63DF120076B54E /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				905D07AC1A63DF120076B54E /* MagicalRecord+Setup.m in Sources */,
 				905D07961A63DF120076B54E /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
@@ -1883,6 +1898,7 @@
 				905D07BA1A63DF130076B54E /* NSManagedObjectContext+MagicalChainSave.m in Sources */,
 				905D07C51A63DF130076B54E /* MagicalRecord+iCloud.m in Sources */,
 				905D07B01A63DF130076B54E /* NSAttributeDescription+MagicalDataImport.m in Sources */,
+				300053391F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */,
 				905D07C71A63DF130076B54E /* MagicalRecord+Setup.m in Sources */,
 				905D07B11A63DF130076B54E /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				905D07BF1A63DF130076B54E /* NSManagedObjectModel+MagicalRecord.m in Sources */,
@@ -1916,6 +1932,7 @@
 			files = (
 				C7CF97C617498493008D9D13 /* MagicalImportFunctions.m in Sources */,
 				C7CF97C717498493008D9D13 /* NSEntityDescription+MagicalDataImport.m in Sources */,
+				3000533A1F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */,
 				C7CF97C817498493008D9D13 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
 				C7CF97C917498493008D9D13 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				C7CF97CA17498493008D9D13 /* NSNumber+MagicalDataImport.m in Sources */,
@@ -1954,6 +1971,7 @@
 				C7CF97E0174984A5008D9D13 /* MagicalImportFunctions.m in Sources */,
 				C7CF97E1174984A5008D9D13 /* NSEntityDescription+MagicalDataImport.m in Sources */,
 				C7CF97E2174984A5008D9D13 /* NSAttributeDescription+MagicalDataImport.m in Sources */,
+				3000533B1F3B2FA7007BBF8A /* NSRelationshipDescription+FDMagicalRecordExport.m in Sources */,
 				C7CF97E3174984A5008D9D13 /* NSRelationshipDescription+MagicalDataImport.m in Sources */,
 				C7CF97E4174984A5008D9D13 /* NSNumber+MagicalDataImport.m in Sources */,
 				C7CF97E5174984A5008D9D13 /* NSObject+MagicalDataImport.m in Sources */,
