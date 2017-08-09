@@ -7,24 +7,26 @@
 //
 
 #import <CoreData/CoreData.h>
+#import <MagicalRecord/MagicalRecordXcode7CompatibilityMacros.h>
 
 @protocol   FDMagicalRecord_ExportOptions <NSObject>
-@property (strong,nonatomic) NSString * ID;
--(NSSet*)skipAttributes;
--(NSSet*)skipRelationship;
+@property  (MR_nullable,strong,nonatomic) NSString *  ID;
+
+@optional
+-(MR_nullable NSSet*)skipAttributes;
+-(MR_nullable NSSet*)skipRelationship;
 @end
 
 @protocol FDMagicalRecord_ExportOptionsDelegate <NSObject>
 
 @optional
--(instancetype)optionsForParentOptions:(id<FDMagicalRecord_ExportOptions>)parentOptions;
+-(MR_nullable instancetype)optionsForParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
 
 @end
 
 @interface NSManagedObject (FDMagicalRecordExport) <FDMagicalRecord_ExportOptionsDelegate>
 
--(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options;
--(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options;
-
+-(MR_nullable NSString*)MR_toJSONWithOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
+-(MR_nullable NSDictionary*)MR_toDictionaryWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
 
 @end
