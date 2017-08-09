@@ -47,6 +47,9 @@
     if(options==nil){
         return attributesName;
     }
+    if(![options performSelector:@selector(skipAttributes) withObject:nil]){
+        return attributesName;
+    }
     
     NSSet * setAttributeName=[NSSet setWithArray:attributesName];
     [setAttributeName intersectsSet:[options skipAttributes]];
