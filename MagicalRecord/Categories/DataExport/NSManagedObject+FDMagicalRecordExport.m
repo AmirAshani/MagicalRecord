@@ -15,7 +15,7 @@
 
 -(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options{
     
-    NSDictionary * dictionary=[self toDictionaryWithOption:options];
+    NSDictionary * dictionary=[self MR_toDictionaryWithOption:options];
 //    NSData * jsonData=[dictionary data]
     NSError *jsonError = nil;
     NSData * jsonData=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&jsonError];
