@@ -20,7 +20,7 @@
 @protocol FDMagicalRecord_ExportOptionsDelegate <NSObject>
 
 @optional
--(MR_nullable FDMagicalRecord_ExportOptionsDelegate*)optionsFromParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
+-(MR_nullable id<FDMagicalRecord_ExportOptionsDelegate>)optionsFromParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
 
 @end
 
