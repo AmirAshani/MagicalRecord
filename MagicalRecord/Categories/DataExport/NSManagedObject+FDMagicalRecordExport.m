@@ -11,19 +11,6 @@
 #import "NSRelationshipDescription+FDMagicalRecordExport.h"
 
 
-@implementation FDMRExportOptions
-
-
--(instancetype)initWithID:(NSString *)ID{
-    self=[self init];
-    if(self){
-        self.ID=ID;
-    }
-    
-    return self;
-}
-
-@end
 
 @implementation NSManagedObject (FDMagicalRecordExport)
 

@@ -18,15 +18,12 @@
 @end
 
 
-@interface FDMRExportOptions : NSObject <FDMagicalRecord_ExportOptions>
-@property (strong,nonatomic) NSString * ID;
--(instancetype)initWithID:(NSString*)ID;
-@end
+
 
 @protocol FDMagicalRecord_ExportOptionsDelegate <NSObject>
 
 @optional
--(MR_nullable FDMRExportOptions*)optionsFromParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
+-(MR_nullable id)optionsFromParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
 
 @end
 
