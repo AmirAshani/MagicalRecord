@@ -127,7 +127,6 @@
                 value=[NSNull null];
             }else{
                 id<FDMagicalRecord_ExportOptions> optionForRelashionship;
-                
                 id relashionshipEntity=relashionshipSet.anyObject;
                 
                 if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){

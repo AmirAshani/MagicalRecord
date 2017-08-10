@@ -11,10 +11,15 @@
 
 @protocol   FDMagicalRecord_ExportOptions <NSObject>
 @property  (MR_nullable,strong,nonatomic) NSString *  ID;
+@property  (MR_nullable,strong,readonly,nonatomic) NSSet  * skipAttributes;
+@property  (MR_nullable,strong,readonly,nonatomic) NSSet * skipRelationship;
 
-@optional
--(MR_nullable NSSet*)skipAttributes;
--(MR_nullable NSSet*)skipRelationship;
+
+@property  (assign,nonatomic) BOOL skipInverseRelashionship;
+
+//@optional
+//-(MR_nullable NSSet*)skipAttributes; //imputable so one relashionship can not affect others
+//-(MR_nullable NSSet*)skipRelationship;
 @end
 
 
