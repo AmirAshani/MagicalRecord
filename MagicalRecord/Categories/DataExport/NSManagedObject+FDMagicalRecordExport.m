@@ -76,10 +76,15 @@
     
     for(NSString *attributeName in attributesName){
         //autoreleasepool // move attirbutes name outside for scope access just once
-        NSAttributeDescription * description=[[self.entity attributesByName] objectForKey:attributeName];
-        NSString * key=[description MR_exportKey];
-        id value=[description MR_formateValue:[self valueForKey:attributeName]];
-        [dictionary setObject:value forKey:key];
+        @autoreleasepool {
+            
+            NSAttributeDescription * description=[[self.entity attributesByName] objectForKey:attributeName];
+            NSString * key=[description MR_exportKey];
+            id value=[description MR_formateValue:[self valueForKey:attributeName]];
+            [dictionary setObject:value forKey:key];
+            
+         
+        }
         
     
     }
@@ -154,6 +159,8 @@
     
     for( NSString * relashionshipName in relashionshipsName){
         
+        @autoreleasepool {
+        
         NSRelationshipDescription * description=[[self.entity relationshipsByName] objectForKey:relashionshipName];
         NSString * key=[description MR_exportKey];
         
@@ -217,12 +224,12 @@
             }else{
                 value=valueDic;
             }
-            
-            
+
             [relashionshipsDictionary setObject:value forKey:key];
             
             
         }
+    }
         
     }
     
