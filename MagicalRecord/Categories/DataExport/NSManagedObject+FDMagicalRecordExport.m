@@ -127,14 +127,14 @@
 }
 
 -(NSString*)inverseRelashionShip:(NSString*)parentEntityClassName{
-    __block NSString *  inverseKey;
+    __block NSString *  inverseKey=@"";
     [self.entity.relationshipsByName enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSRelationshipDescription * _Nonnull relashionshipDescription, BOOL * _Nonnull stop) {
         if([relashionshipDescription.destinationEntity.name isEqualToString:parentEntityClassName]){
             inverseKey=key;
             *stop=true;
         }
     }];
-    return @"";
+    return inverseKey;
 }
 
 
