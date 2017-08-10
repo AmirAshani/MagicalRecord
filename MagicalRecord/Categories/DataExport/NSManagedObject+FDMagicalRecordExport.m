@@ -35,6 +35,8 @@
 
 -(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
     
+    
+    
     NSArray * attributesNameToExport=[self attributesNameToExport:options];
     NSDictionary * dicAttributes=[self exportAttributes:attributesNameToExport];
     
@@ -92,15 +94,47 @@
         return relashionshipsName;
     }
     
-    if(![options respondsToSelector:@selector(skipRelationship)]){
+    NSMutableSet * setRelashionshipName;
+    
+    if(options.skipInverseRelashionship){
+        
+        if(setRelashionshipName==nil){
+            setRelashionshipName=[NSMutableSet setWithArray:relashionshipsName];
+        }
+        
+        [setRelashionshipName removeObject:[self inverseRelashionShip:options.parentEntityClassName]];
+        
+        
+    }
+    
+    if(options.skipRelationships == nil || options.skipRelationships.count==0){
+        if(setRelashionshipName==nil){
+            setRelashionshipName=[NSMutableSet setWithArray:relashionshipsName];
+        }
+        
+        [setRelashionshipName minusSet:options.skipRelationships];
+        
+    }
+    
+    if(setRelashionshipName==nil){
         return relashionshipsName;
     }
     
     
-    NSMutableSet * setRelashionshipName=[NSMutableSet setWithArray:relashionshipsName];
-    [setRelashionshipName minusSet:[options skipRelationship]];
+    
     
     return [setRelashionshipName allObjects];
+}
+
+-(NSString*)inverseRelashionShip:(NSString*)parentEntityClassName{
+    __block NSString *  inverseKey;
+    [self.entity.relationshipsByName enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSRelationshipDescription * _Nonnull relashionshipDescription, BOOL * _Nonnull stop) {
+        if([relashionshipDescription.destinationEntity.name isEqualToString:parentEntityClassName]){
+            inverseKey=key;
+            *stop=true;
+        }
+    }];
+    return @"";
 }
 
 
@@ -111,12 +145,18 @@
 
 -(NSDictionary*)exportRelashionships:(NSArray*)relashionshipsName withOptions:(id<FDMagicalRecord_ExportOptions>)options{
     
+    if(options!=nil){
+        options.parentEntityClassName=self.entity.name;
+    }
+    
+    
     NSMutableDictionary * relashionshipsDictionary=[[NSMutableDictionary alloc] initWithCapacity:relashionshipsName.count];
     
     for( NSString * relashionshipName in relashionshipsName){
         
         NSRelationshipDescription * description=[[self.entity relationshipsByName] objectForKey:relashionshipName];
         NSString * key=[description MR_exportKey];
+        
         
         if([description isToMany]){
             
@@ -168,6 +208,8 @@
             }else{
                 optionForRelashionship=options;
             }
+            
+    
             
             NSDictionary * valueDic=[relashionshipEntity MR_toDictionaryWithOption:optionForRelashionship];
             if(valueDic == nil || valueDic.allKeys.count ==0 ){
