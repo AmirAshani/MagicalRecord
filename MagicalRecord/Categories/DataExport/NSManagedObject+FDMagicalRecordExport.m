@@ -112,7 +112,7 @@
         
     }
     
-    if(options.skipRelationships == nil || options.skipRelationships.count==0){
+    if(options.skipRelationships != nil && options.skipRelationships.count>0){
         if(setRelashionshipName==nil){
             setRelashionshipName=[NSMutableSet setWithArray:relashionshipsName];
         }
