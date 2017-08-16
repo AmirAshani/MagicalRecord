@@ -196,6 +196,15 @@
                 
                 for(NSManagedObject * relashionshipEntity in relashionshipSet){
                     
+                    
+                    if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
+                        if([relashionshipEntity performSelector:@selector(shouldExportWithOptions:) withObject:options] == false){
+                            continue;
+                        }
+                        
+                    }
+                    
+                    
                     //refactor make a copy of releashionship so child can not edit
                     if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOption:)]){
                         optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options];
@@ -203,13 +212,9 @@
                         optionForRelashionship=options;
                     }
                     
-                    if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                        if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:optionForRelashionship] == false){
-                            continue;
-                        }
                     
-                    }
-                    id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:options];
+                    
+                    id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:optionForRelashionship];
                     
                     if(relashionshipValue==nil){
                         continue;
@@ -243,6 +248,12 @@
             id relashionshipEntity=[self valueForKey:relashionshipName];
             
             
+            if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
+                if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
+                    return relashionshipsDictionary;
+                }
+                
+            }
             
             if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOption:)]){
                 optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options];
@@ -251,15 +262,10 @@
             }
             
             
-            if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
-                    return relashionshipsDictionary;
-                }
-                
-            }
+           
             
             
-            id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:options];
+            id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:optionForRelashionship];
             
             if(relashionshipValue==nil){
                 [relashionshipsDictionary setObject:[NSNull null] forKey:key];
