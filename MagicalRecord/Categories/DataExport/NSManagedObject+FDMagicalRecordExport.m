@@ -186,7 +186,7 @@
             
             NSSet * relashionshipSet=[self valueForKey:relashionshipName];
             if(relashionshipSet.count==0){
-                value=[NSNull null];
+                value=[NSMutableArray array];
             }else{
                 id<FDMagicalRecord_ExportOptions> optionForRelashionship;
                 
@@ -204,7 +204,7 @@
                     }
                     
                     if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                        if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
+                        if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:optionForRelashionship] == false){
                             continue;
                         }
                     
