@@ -31,12 +31,13 @@
 
 @optional
 -(MR_nullable id)optionsFromParentOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
-
+- (BOOL) shouldExportWithOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)parentOptions;
 @end
 
 @interface NSManagedObject (FDMagicalRecordExport) <FDMagicalRecord_ExportOptionsDelegate>
 
 -(MR_nullable NSString*)MR_toJSONWithOptions:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
 -(MR_nullable NSDictionary*)MR_toDictionaryWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
+-(MR_nullable id)MR_exportedValue:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
 
 @end

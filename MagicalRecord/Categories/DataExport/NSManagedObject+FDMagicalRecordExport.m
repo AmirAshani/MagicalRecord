@@ -35,8 +35,25 @@
 
 -(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
     
+    return [self MR_exportedValue:options];
+
     
+//    NSArray * attributesNameToExport=[self attributesNameToExport:options];
+//    NSDictionary * dicAttributes=[self exportAttributes:attributesNameToExport];
+//    
+//    NSArray * relashionshipsNameToExport=[self relashionshipsToExport:options];
+//    NSDictionary * dicRelashionship=[self exportRelashionships:relashionshipsNameToExport withOptions:options];
+//    
+//    NSMutableDictionary * returnValue=[[NSMutableDictionary alloc] init];
+//    [returnValue addEntriesFromDictionary:dicAttributes];
+//    [returnValue addEntriesFromDictionary:dicRelashionship];
+//    
+//    return [returnValue copy];
     
+}
+
+
+-(id)MR_exportedValue:(id<FDMagicalRecord_ExportOptions>)options{
     NSArray * attributesNameToExport=[self attributesNameToExport:options];
     NSDictionary * dicAttributes=[self exportAttributes:attributesNameToExport];
     
@@ -50,8 +67,6 @@
     return [returnValue copy];
     
 }
-
-
 
 -(NSArray*)attributesNameToExport:(id<FDMagicalRecord_ExportOptions>)options{
     NSArray* attributesName=self.entity.attributesByName.allKeys;
@@ -188,7 +203,14 @@
                         optionForRelashionship=options;
                     }
                     
-                    
+                    if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
+                        
+                        if([relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options] == false){
+                            continue;
+                        }
+                        
+                        
+                    }
                     NSDictionary * valueDic=[entry MR_toDictionaryWithOption:optionForRelashionship];
                     if(!(valueDic == nil || valueDic.allKeys.count ==0) ){ //refactor
                         [value addObject:valueDic];
