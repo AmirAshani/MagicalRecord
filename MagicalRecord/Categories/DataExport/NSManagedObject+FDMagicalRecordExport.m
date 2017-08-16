@@ -241,7 +241,7 @@
             
             id<FDMagicalRecord_ExportOptions> optionForRelashionship;
             id relashionshipEntity=[self valueForKey:relashionshipName];
-            id value=nil;
+            
             
             
             if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
@@ -262,13 +262,13 @@
             id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:options];
             
             if(relashionshipValue==nil){
-                [relashionshipsDictionary setObject:value forKey:[NSNull null]];
+                [relashionshipsDictionary setObject:[NSNull null] forKey:key];
                 return relashionshipsDictionary;
             }
             
             
             if([relashionshipValue isKindOfClass:[NSDictionary class]] &&  ((NSDictionary*)relashionshipValue).allKeys.count == 0){
-                [relashionshipsDictionary setObject:value forKey:[NSNull null]];
+                [relashionshipsDictionary setObject:[NSNull null] forKey:key];
                 return relashionshipsDictionary;
             }
             
