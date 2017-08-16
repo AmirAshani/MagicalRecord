@@ -28,7 +28,7 @@
     
     if(attributeType == NSDateAttributeType){
         NSString *dateFormat = [[self userInfo] objectForKey:kMagicalRecordImportCustomDateFormatKey];
-        value=MR_dateToString(value, dateFormat ?: kMagicalRecordImportDefaultDateFormatString);
+        value=MR_dateToString(valueToFormat, dateFormat ?: kMagicalRecordImportDefaultDateFormatString);
 
     }
     //can be removed
