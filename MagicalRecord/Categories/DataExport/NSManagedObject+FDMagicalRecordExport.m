@@ -197,14 +197,14 @@
                 for(NSManagedObject * relashionshipEntity in relashionshipSet){
                     
                     //refactor make a copy of releashionship so child can not edit
-                    if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
-                        optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options];
+                    if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOption:)]){
+                        optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options];
                     }else{
                         optionForRelashionship=options;
                     }
                     
                     if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                        if([relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options] == false){
+                        if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
                             continue;
                         }
                     
@@ -244,15 +244,15 @@
             
             
             
-            if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
-                optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options];
+            if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOption:)]){
+                optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options];
             }else{
                 optionForRelashionship=options;
             }
             
             
             if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                if([relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options] == false){
+                if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
                     return relashionshipsDictionary;
                 }
                 
