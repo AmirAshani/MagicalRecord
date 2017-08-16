@@ -176,15 +176,18 @@
                 id<FDMagicalRecord_ExportOptions> optionForRelashionship;
                 id relashionshipEntity=relashionshipSet.anyObject;
                 
-                if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
-                    optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options];
-                }else{
-                    optionForRelashionship=options;
-                }
                 
                 value=[[NSMutableArray alloc] initWithCapacity:relashionshipSet.count];
                 
                 for(NSManagedObject * entry in relashionshipSet){
+                    
+                    //refactor make a copy of releashionship so child can not edit
+                    if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
+                        optionForRelashionship=[relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options];
+                    }else{
+                        optionForRelashionship=options;
+                    }
+                    
                     
                     NSDictionary * valueDic=[entry MR_toDictionaryWithOption:optionForRelashionship];
                     if(!(valueDic == nil || valueDic.allKeys.count ==0) ){ //refactor
