@@ -14,7 +14,7 @@
 
 @implementation NSManagedObject (FDMagicalRecordExport)
 
--(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)option{
+-(NSString*)MR_toJSONWithOption:(id<FDMagicalRecord_ExportOptions>)option{
     
     NSDictionary * dictionary=[self MR_toDictionaryWithOption:option];
 //    NSData * jsonData=[dictionary data]
@@ -33,9 +33,9 @@
 }
 
 
--(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
+-(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)option{
     
-    return [self MR_exportedValueWithOption:options];
+    return [self MR_exportedValueWithOption:option];
 
     
 //    NSArray * attributesNameToExport=[self attributesNameToExport:options];
@@ -53,12 +53,12 @@
 }
 
 
--(id)MR_exportedValueWithOption:(id<FDMagicalRecord_ExportOptions>)options{
-    NSArray * attributesNameToExport=[self attributesNameToExport:options];
+-(id)MR_exportedValueWithOption:(id<FDMagicalRecord_ExportOptions>)option{
+    NSArray * attributesNameToExport=[self attributesNameToExport:option];
     NSDictionary * dicAttributes=[self exportAttributes:attributesNameToExport];
     
-    NSArray * relashionshipsNameToExport=[self relashionshipsToExport:options];
-    NSDictionary * dicRelashionship=[self exportRelashionships:relashionshipsNameToExport withOptions:options];
+    NSArray * relashionshipsNameToExport=[self relashionshipsToExport:option];
+    NSDictionary * dicRelashionship=[self exportRelashionships:relashionshipsNameToExport withOptions:option];
     
     NSMutableDictionary * returnValue=[[NSMutableDictionary alloc] init];
     [returnValue addEntriesFromDictionary:dicAttributes];

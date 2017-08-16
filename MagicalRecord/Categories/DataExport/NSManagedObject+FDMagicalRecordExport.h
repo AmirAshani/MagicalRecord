@@ -36,8 +36,8 @@
 
 @interface NSManagedObject (FDMagicalRecordExport) <FDMagicalRecord_ExportOptionsDelegate>
 
--(MR_nullable NSString*)MR_toJSONWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
--(MR_nullable NSDictionary*)MR_toDictionaryWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
--(MR_nullable id)MR_exportedValueWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)options;
+-(MR_nullable NSString*)MR_toJSONWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)option;
+-(MR_nullable NSDictionary*)MR_toDictionaryWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)option;
+-(MR_nullable id)MR_exportedValueWithOption:(MR_nullable id<FDMagicalRecord_ExportOptions>)option;
 
 @end
