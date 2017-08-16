@@ -14,9 +14,9 @@
 
 @implementation NSManagedObject (FDMagicalRecordExport)
 
--(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)options{
+-(NSString*)MR_toJSONWithOptions:(id<FDMagicalRecord_ExportOptions>)option{
     
-    NSDictionary * dictionary=[self MR_toDictionaryWithOption:options];
+    NSDictionary * dictionary=[self MR_toDictionaryWithOption:option];
 //    NSData * jsonData=[dictionary data]
     NSError *jsonError = nil;
     NSData * jsonData=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:&jsonError];
@@ -35,7 +35,7 @@
 
 -(NSDictionary*)MR_toDictionaryWithOption:(id<FDMagicalRecord_ExportOptions>)options{
     
-    return [self MR_exportedValue:options];
+    return [self MR_exportedValueWithOption:options];
 
     
 //    NSArray * attributesNameToExport=[self attributesNameToExport:options];
@@ -53,7 +53,7 @@
 }
 
 
--(id)MR_exportedValue:(id<FDMagicalRecord_ExportOptions>)options{
+-(id)MR_exportedValueWithOption:(id<FDMagicalRecord_ExportOptions>)options{
     NSArray * attributesNameToExport=[self attributesNameToExport:options];
     NSDictionary * dicAttributes=[self exportAttributes:attributesNameToExport];
     
@@ -189,12 +189,12 @@
                 value=[NSNull null];
             }else{
                 id<FDMagicalRecord_ExportOptions> optionForRelashionship;
-                id relashionshipEntity=relashionshipSet.anyObject;
+                
                 
                 
                 value=[[NSMutableArray alloc] initWithCapacity:relashionshipSet.count];
                 
-                for(NSManagedObject * entry in relashionshipSet){
+                for(NSManagedObject * relashionshipEntity in relashionshipSet){
                     
                     //refactor make a copy of releashionship so child can not edit
                     if([relashionshipEntity respondsToSelector:@selector(optionsFromParentOptions:)]){
@@ -204,17 +204,26 @@
                     }
                     
                     if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                        
                         if([relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options] == false){
                             continue;
                         }
-                        
-                        
+                    
                     }
-                    NSDictionary * valueDic=[entry MR_toDictionaryWithOption:optionForRelashionship];
-                    if(!(valueDic == nil || valueDic.allKeys.count ==0) ){ //refactor
-                        [value addObject:valueDic];
+                    id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:options];
+                    
+                    if(relashionshipValue==nil){
+                        continue;
                     }
+                    
+                    
+                    if([relashionshipValue isKindOfClass:[NSDictionary class]] &&  ((NSDictionary*)relashionshipValue).allKeys.count == 0){
+                        continue;
+                    }
+                        
+                    
+                    [value addObject:relashionshipValue];
+                    
+                    
                 
                 }
                 
@@ -241,16 +250,30 @@
                 optionForRelashionship=options;
             }
             
-    
             
-            NSDictionary * valueDic=[relashionshipEntity MR_toDictionaryWithOption:optionForRelashionship];
-            if(valueDic == nil || valueDic.allKeys.count ==0 ){
-                value=[NSNull null];
-            }else{
-                value=valueDic;
+            if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
+                if([relashionshipEntity performSelector:@selector(optionsFromParentOptions:) withObject:options] == false){
+                    return relashionshipsDictionary;
+                }
+                
             }
-
-            [relashionshipsDictionary setObject:value forKey:key];
+            
+            
+            id relashionshipValue=[relashionshipEntity MR_exportedValueWithOption:options];
+            
+            if(relashionshipValue==nil){
+                [relashionshipsDictionary setObject:value forKey:[NSNull null]];
+                return relashionshipsDictionary;
+            }
+            
+            
+            if([relashionshipValue isKindOfClass:[NSDictionary class]] &&  ((NSDictionary*)relashionshipValue).allKeys.count == 0){
+                [relashionshipsDictionary setObject:value forKey:[NSNull null]];
+                return relashionshipsDictionary;
+            }
+            
+    
+            [relashionshipsDictionary setObject:relashionshipValue forKey:key];
             
             
         }
