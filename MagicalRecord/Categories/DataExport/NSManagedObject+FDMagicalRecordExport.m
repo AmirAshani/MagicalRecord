@@ -218,9 +218,9 @@
                 
                 }
                 
-                if([value count]==0){
-                    value=[NSNull null];
-                }
+//                if([value count]==0){
+//                    value=[NSNull null];
+//                }
 
             }
             
