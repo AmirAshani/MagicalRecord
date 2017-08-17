@@ -249,7 +249,7 @@
             
             
             if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
-                if([relashionshipEntity performSelector:@selector(optionsFromParentOption:) withObject:options] == false){
+                if([relashionshipEntity performSelector:@selector(shouldExportWithOptions:) withObject:options] == false){
                     return relashionshipsDictionary;
                 }
                 
