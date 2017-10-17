@@ -250,7 +250,8 @@
             
             if([relashionshipEntity respondsToSelector:@selector(shouldExportWithOptions:)]){
                 if([relashionshipEntity performSelector:@selector(shouldExportWithOptions:) withObject:options] == false){
-                    return relashionshipsDictionary;
+//                    return relashionshipsDictionary;
+                    continue;
                 }
                 
             }
@@ -269,13 +270,15 @@
             
             if(relashionshipValue==nil){
                 [relashionshipsDictionary setObject:[NSNull null] forKey:key];
-                return relashionshipsDictionary;
+//                return relashionshipsDictionary;
+                continue;
             }
             
             
             if([relashionshipValue isKindOfClass:[NSDictionary class]] &&  ((NSDictionary*)relashionshipValue).allKeys.count == 0){
                 [relashionshipsDictionary setObject:[NSNull null] forKey:key];
-                return relashionshipsDictionary;
+//                return relashionshipsDictionary;
+                continue;
             }
             
     
